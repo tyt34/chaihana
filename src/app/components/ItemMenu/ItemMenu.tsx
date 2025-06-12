@@ -20,11 +20,11 @@ export default function ItemMenu({ item, onIncrease, onDecrease }: Props) {
 
       <div className={styles.controls}>
         <button onClick={onDecrease} aria-label={`Уменьшить количество для ${item.name}`}>
-          -
+          <span className={styles.button}> - </span>
         </button>
 
         <button onClick={onIncrease} aria-label={`Увеличить количество для ${item.name}`}>
-          +
+          <span className={styles.button}> + </span>
         </button>
 
         <span className={styles.count}>{item.count}</span>

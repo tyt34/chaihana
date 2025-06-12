@@ -2,7 +2,7 @@
 
 import { menuStore } from '@/app/store/menu-store'
 import { observer } from 'mobx-react-lite'
-import { reaction } from 'mobx'
+import { settingsStore } from '@/app/store/setting-store'
 import { useEffect } from 'react'
 import ItemMenu from '../ItemMenu/ItemMenu'
 import styles from './Main.module.scss'
@@ -24,15 +24,19 @@ const Main = observer(() => {
   }, [])
 
   useEffect(() => {
-    const disposer = reaction(
-      () => menuStore.order.map((item) => ({ ...item })),
-      () => {
-        // console.log('order changed', orderSnapshot)
-      }
-    )
-
-    return () => disposer()
+    console.log({ S: settingsStore.setting })
   }, [])
+
+  // useEffect(() => {
+  //   const disposer = reaction(
+  //     () => menuStore.order.map((item) => ({ ...item })),
+  //     () => {
+  //       // console.log('order changed', orderSnapshot)
+  //     }
+  //   )
+
+  //   return () => disposer()
+  // }, [])
 
   return (
     <section className={styles.page}>
@@ -52,8 +56,12 @@ const Main = observer(() => {
             <ItemMenu
               key={item.name}
               item={item}
-              onIncrease={() => menuStore.increaseCount(item.name)}
-              onDecrease={() => menuStore.decreaseCount(item.name)}
+              onIncrease={() =>
+                menuStore.increaseCount(item.name, settingsStore.setting.allowHalfOrders)
+              }
+              onDecrease={() =>
+                menuStore.decreaseCount(item.name, settingsStore.setting.allowHalfOrders)
+              }
             />
           ))}
       </div>

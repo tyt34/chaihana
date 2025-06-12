@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import styles from './Setting.module.scss'
-import { UserSettings } from './Setting.types'
 import { DEFAULT_SETTINGS, LOCAL_STORAGE_SETTING } from './Setting.constants'
+import { useEffect, useState } from 'react'
+import { UserSettings } from './Setting.types'
+import styles from './Setting.module.scss'
 
 export default function SettingPage() {
   const [settings, setSettings] = useState<UserSettings>(DEFAULT_SETTINGS)
@@ -19,10 +19,6 @@ export default function SettingPage() {
       }
     }
   }, [])
-
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_SETTING, JSON.stringify(settings))
-  }, [settings])
 
   const toggleAllowHalfOrders = () => {
     setSettings((prev) => ({

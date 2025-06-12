@@ -1,4 +1,5 @@
 import Button from '../Button/Button'
+import CheckSetting from '../CheckSetting/CheckSetting'
 import styles from './Header.module.scss'
 
 const LINKS_LIST = [
@@ -9,14 +10,14 @@ const LINKS_LIST = [
 
 export default function Header() {
   return (
-    <section className={styles.container}>
-      {/* <Button href="/" name="меню"></Button> */}
-      {/* <Button href="/Order"></Button> */}
-      {/* <Button href="/Setting"></Button> */}
+    <>
+      <CheckSetting />
 
-      {LINKS_LIST.map((link) => (
-        <Button key={link.href} href={link.href} name={link.name} />
-      ))}
-    </section>
+      <section className={styles.container}>
+        {LINKS_LIST.map((link) => (
+          <Button key={link.href} href={link.href} name={link.name} />
+        ))}
+      </section>
+    </>
   )
 }

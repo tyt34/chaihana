@@ -26,17 +26,30 @@ export class MenuStore {
     this.loading = val
   }
 
-  increaseCount(name: string) {
+  increaseCount(name: string, halfMode: boolean) {
     const item = this.order.find((el) => el.name === name)
-    if (item) {
+
+    if (!item) {
+      return
+    }
+
+    console.log({ name, halfMode, item })
+
+    if (halfMode && item.halfAvailable) {
+      item.count = +(item.count + 0.5).toFixed(1)
+    } else {
       item.count++
     }
   }
 
-  decreaseCount(name: string) {
+  decreaseCount(name: string, halfMode: boolean) {
     const item = this.order.find((el) => el.name === name)
-    if (item && item.count > 0) {
-      item.count--
+    if (!item) return
+
+    if (halfMode && item.halfAvailable) {
+      item.count = +Math.max(0, item.count - 0.5).toFixed(1)
+    } else {
+      item.count = Math.max(0, item.count - 1)
     }
   }
 }

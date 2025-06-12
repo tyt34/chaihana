@@ -33,8 +33,6 @@ export class MenuStore {
       return
     }
 
-    console.log({ name, halfMode, item })
-
     if (halfMode && item.halfAvailable) {
       item.count = +(item.count + 0.5).toFixed(1)
     } else {

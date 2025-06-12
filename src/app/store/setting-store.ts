@@ -10,7 +10,6 @@ export class SettingsStore {
   }
 
   setSetting(data: UserSettings) {
-    console.log({ S: data })
     this.setting = data
     localStorage.setItem(LOCAL_STORAGE_SETTING, JSON.stringify(data))
   }

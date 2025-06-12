@@ -23,20 +23,7 @@ const Main = observer(() => {
     }
   }, [])
 
-  useEffect(() => {
-    console.log({ S: settingsStore.setting })
-  }, [])
-
-  // useEffect(() => {
-  //   const disposer = reaction(
-  //     () => menuStore.order.map((item) => ({ ...item })),
-  //     () => {
-  //       // console.log('order changed', orderSnapshot)
-  //     }
-  //   )
-
-  //   return () => disposer()
-  // }, [])
+  useEffect(() => {}, [])
 
   return (
     <section className={styles.page}>

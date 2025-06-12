@@ -9,6 +9,7 @@
   border-radius: 6px;
   margin-bottom: 8px;
   transition: background-color 0.3s ease;
+  gap: 24px;
 
   &:hover {
     background-color: #f0f0f0;
@@ -30,9 +31,10 @@
 }
 
 .controls {
-  display: flex;
+  display: grid;
   justify-content: flex-end;
   gap: 12px;
+  grid-template-columns: 42px 42px 50px;
 }
 
 .controls button {
@@ -63,11 +65,12 @@
 
 .count {
   min-width: 28px;
-  text-align: center;
+  text-align: left;
   font-weight: 700;
   font-size: 18px;
   user-select: none;
   align-self: center;
+  align-items: flex-start;
 }
 
 .button {

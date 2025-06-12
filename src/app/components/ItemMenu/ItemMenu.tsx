@@ -9,8 +9,6 @@ interface Props {
 }
 
 const ItemMenu = observer(({ item, onIncrease, onDecrease }: Props) => {
-  // console.log({ item: toJS(item) })
-
   return (
     <section className={styles.container}>
       <div className={styles.info}>
@@ -30,7 +28,9 @@ const ItemMenu = observer(({ item, onIncrease, onDecrease }: Props) => {
           <span className={styles.button}> + </span>
         </button>
 
-        <span className={styles.count}>{item.count}</span>
+        <span className={styles.count}>
+          {item.halfAvailable && item.count !== 0 ? item.count.toFixed(1) : item.count}
+        </span>
       </div>
     </section>
   )

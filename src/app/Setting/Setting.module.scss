@@ -1,2 +1,28 @@
-.container {
+.commentWrapper {
+  margin-top: 8px;
+}
+
+.commentToggle {
+  background: none;
+  border: none;
+  color: #0070f3;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  text-decoration: underline;
+  margin-bottom: 12px;
+
+  &:hover {
+    color: #005bb5;
+  }
+}
+
+.comment {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #555;
+}
+
+.buttonWrapper {
+  font-size: 17px;
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { DEFAULT_SETTINGS, LOCAL_STORAGE_SETTING } from './Setting.constants'
+import { settingsStore } from '../store/setting-store'
 import { useEffect, useState } from 'react'
 import { UserSettings } from './Setting.types'
 import styles from './Setting.module.scss'
@@ -14,17 +15,18 @@ export default function SettingPage() {
     if (stored) {
       try {
         setSettings(JSON.parse(stored))
-      } catch {
-        // игнорируем ошибку
-      }
+      } catch {}
     }
   }, [])
 
   const toggleAllowHalfOrders = () => {
-    setSettings((prev) => ({
-      ...prev,
-      allowHalfOrders: !prev.allowHalfOrders,
-    }))
+    const updated = {
+      ...settings,
+      allowHalfOrders: !settings.allowHalfOrders,
+    }
+    setSettings(updated)
+    settingsStore.setSetting(updated)
+    localStorage.setItem(LOCAL_STORAGE_SETTING, JSON.stringify(updated))
   }
 
   const toggleComment = () => setIsOpen((prev) => !prev)
@@ -52,7 +54,7 @@ export default function SettingPage() {
           checked={settings.allowHalfOrders}
           onChange={toggleAllowHalfOrders}
         />
-        Разрешить заказ половинок
+        <span>Разрешить заказ половинок</span>
       </label>
     </div>
   )

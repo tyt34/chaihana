@@ -11,7 +11,6 @@ export default function CheckSetting() {
     if (raw) {
       try {
         const data = JSON.parse(raw)
-
         settingsStore.setSetting(data)
       } catch (e) {
         console.error('Ошибка чтения настроек из localStorage', e)

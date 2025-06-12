@@ -2,6 +2,7 @@
 
 import { menuStore } from '../store/menu-store'
 import { observer } from 'mobx-react-lite'
+import { settingsStore } from '../store/setting-store'
 import ItemMenu from '../components/ItemMenu/ItemMenu'
 import styles from './Order.module.scss'
 
@@ -19,8 +20,12 @@ const OrderPage = observer(() => {
           <ItemMenu
             key={item.name}
             item={item}
-            onIncrease={() => menuStore.increaseCount(item.name)}
-            onDecrease={() => menuStore.decreaseCount(item.name)}
+            onIncrease={() =>
+              menuStore.increaseCount(item.name, settingsStore.setting.allowHalfOrders)
+            }
+            onDecrease={() =>
+              menuStore.decreaseCount(item.name, settingsStore.setting.allowHalfOrders)
+            }
           />
         ))}
       </div>

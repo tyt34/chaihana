@@ -1,4 +1,4 @@
-export interface MenuType {
+export interface MenuResponse {
   name: string
   price: number
   halfAvailable: boolean

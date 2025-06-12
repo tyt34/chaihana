@@ -10,8 +10,14 @@ interface Props {
 export default function ItemMenu({ item, onIncrease, onDecrease }: Props) {
   return (
     <section className={styles.container}>
-      <div className={styles.info}>{item.name}</div>
-      <div className={styles.price}>{item.price} ₽</div>
+      <div className={styles.info}>
+        <p>{item.name}</p>
+      </div>
+
+      <div className={styles.price}>
+        <p>{item.price} ₽</p>
+      </div>
+
       <div className={styles.controls}>
         <button onClick={onDecrease} aria-label={`Уменьшить количество для ${item.name}`}>
           -

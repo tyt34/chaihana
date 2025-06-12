@@ -1,7 +1,13 @@
+@import 'variables.scss';
+
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
   background: #fff;
   color: #333;
   padding: 32px;
+}
+
+p {
+  color: $color-text;
 }

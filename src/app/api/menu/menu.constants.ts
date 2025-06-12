@@ -1,6 +1,6 @@
-import { MenuType } from './menu.types'
+import { MenuResponse } from './menu.types'
 
-export const MENU_LIST: MenuType[] = [
+export const MENU_LIST: MenuResponse[] = [
   {
     name: 'Плов',
     price: 300,

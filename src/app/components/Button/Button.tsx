@@ -11,7 +11,7 @@ interface Props {
 export default function Button({ children, href, name }: Props) {
   return (
     <Link href={href} className={styles.container}>
-      {name}
+      <p>{name}</p>
       {children}
     </Link>
   )

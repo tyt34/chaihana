@@ -1,41 +1,44 @@
 'use client'
 
-import { MenuResponse } from '@/app/api/menu/menu.types'
-import { MenuType } from '../ItemMenu/ItemMenu.types'
-import { useEffect, useState } from 'react'
+import { menuStore } from '@/app/store/menu-store'
+import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
 import ItemMenu from '../ItemMenu/ItemMenu'
 import styles from './Main.module.scss'
 
-const transformResponse = (list: MenuResponse[]): MenuType[] => {
-  return list.map((el) => {
-    const { halfAvailable, name, price } = el
-    const update: MenuType = {
-      count: 0,
-      halfAvailable,
-      name,
-      price,
-    }
-    return update
-  })
-}
+const Main = observer(() => {
+  // const [menu, setMenu] = useState<MenuType[]>([])
+  // const [loading, setLoading] = useState(true)
 
-export default function Main() {
-  const [menu, setMenu] = useState<MenuType[]>([])
-  const [loading, setLoading] = useState(true)
+  // useEffect(() => {
+  //   fetch('/api/menu')
+  //     .then((res) => res.json())
+  //     .then((data: MenuResponse[]) => {
+  //       console.log({ D: data })
+  //       const updateList = transformResponse(data)
+  //       console.log({ updateList })
+  //       setMenu(updateList)
+  //       setLoading(false)
+  //     })
+  //     .catch((err) => {
+  //       console.error('Ошибка загрузки меню:', err)
+  //       setLoading(false)
+  //     })
+  // }, [])
 
   useEffect(() => {
+    console.log(' --> ')
+    menuStore.setLoading(true)
     fetch('/api/menu')
       .then((res) => res.json())
-      .then((data: MenuResponse[]) => {
+      .then((data) => {
         console.log({ D: data })
-        const updateList = transformResponse(data)
-        console.log({ updateList })
-        setMenu(updateList)
-        setLoading(false)
+        menuStore.setMenu(data)
       })
-      .catch((err) => {
-        console.error('Ошибка загрузки меню:', err)
-        setLoading(false)
+      .catch(() => {})
+      .finally(() => {
+        console.log(' --> 2')
+        menuStore.setLoading(false)
       })
   }, [])
 
@@ -46,17 +49,24 @@ export default function Main() {
       </div>
 
       <div>
-        {loading && <p>Загрузка...</p>}
-        {!loading &&
-          menu.map((item, index) => (
+        {menuStore.loading && (
+          <div className={styles.loadingOverlay}>
+            <div className={styles.spinner} />
+          </div>
+        )}
+
+        {!menuStore.loading &&
+          menuStore.menu.map((item) => (
             <ItemMenu
-              key={index}
+              key={item.name}
               item={item}
-              onIncrease={() => console.log(`+ ${item.name}`)}
-              onDecrease={() => console.log(`- ${item.name}`)}
+              onIncrease={() => menuStore.increaseCount(item.name)}
+              onDecrease={() => menuStore.decreaseCount(item.name)}
             />
           ))}
       </div>
     </section>
   )
-}
+})
+
+export default Main

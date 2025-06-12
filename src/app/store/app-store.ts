@@ -1,19 +1,15 @@
 import { makeAutoObservable } from 'mobx'
 
-class UIStore {
-  counter = 0
+class AppStore {
+  currentPath: string = '/'
 
   constructor() {
     makeAutoObservable(this)
   }
 
-  increment() {
-    this.counter++
-  }
-
-  reset() {
-    this.counter = 0
+  setCurrentPath(path: string) {
+    this.currentPath = path
   }
 }
 
-export const uiStore = new UIStore()
+export const appStore = new AppStore()

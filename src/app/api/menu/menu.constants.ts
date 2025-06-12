@@ -3,7 +3,7 @@ import { MenuResponse } from './menu.types'
 export const MENU_LIST: MenuResponse[] = [
   {
     name: 'Плов',
-    price: 300,
+    price: 1300,
     halfAvailable: false,
     type: 'food',
   },

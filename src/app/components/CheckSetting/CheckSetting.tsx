@@ -3,8 +3,16 @@
 import { LOCAL_STORAGE_SETTING } from '@/app/Setting/Setting.constants'
 import { settingsStore } from '@/app/store/setting-store'
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { appStore } from '@/app/store/app-store'
 
 export default function CheckSetting() {
+  const pathname = usePathname()
+
+  useEffect(() => {
+    appStore.setCurrentPath(pathname)
+  }, [pathname])
+
   useEffect(() => {
     const raw = localStorage.getItem(LOCAL_STORAGE_SETTING)
 

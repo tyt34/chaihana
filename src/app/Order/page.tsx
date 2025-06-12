@@ -1,4 +1,4 @@
-import styles from './order.module.scss'
+import styles from './Order.module.scss'
 
 export default function OrderPage() {
   return (

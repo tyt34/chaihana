@@ -1,4 +1,4 @@
-import styles from './setting.module.scss'
+import styles from './Setting.module.scss'
 
 export default function SettingPage() {
   return (

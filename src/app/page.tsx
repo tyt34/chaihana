@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import styles from './page.module.scss'
+import styles from './Page.module.scss'
 
 export default function Home() {
   return (
@@ -8,11 +8,11 @@ export default function Home() {
       <div className="a-2"></div>
       <div className="a-3"></div>
 
-      <Link href="/order" className={styles.myLink}>
+      <Link href="/Order" className={styles.myLink}>
         Перейти на страницу 1
       </Link>
 
-      <Link href="/setting" className={styles.myLink}>
+      <Link href="/Setting" className={styles.myLink}>
         Перейти на страницу 2
       </Link>
     </section>

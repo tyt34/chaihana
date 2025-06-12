@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 
 import './globals.scss'
+import Header from './components/Header/Header'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -26,12 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <section className={styles.page}>
-        <div className={styles['a-1']}></div>
-        <div className="a-2"></div>
-        <div className="a-3"></div>
-      </section> */}
-
+      <Header></Header>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
     </html>
   )

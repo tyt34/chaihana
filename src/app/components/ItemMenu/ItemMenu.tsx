@@ -1,6 +1,5 @@
 import { MenuType } from './ItemMenu.types'
 import { observer } from 'mobx-react-lite'
-import { toJS } from 'mobx'
 import styles from './ItemMenu.module.scss'
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
 }
 
 const ItemMenu = observer(({ item, onIncrease, onDecrease }: Props) => {
-  console.log({ item: toJS(item) })
+  // console.log({ item: toJS(item) })
 
   return (
     <section className={styles.container}>

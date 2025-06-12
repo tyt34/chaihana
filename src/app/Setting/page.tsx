@@ -15,15 +15,13 @@ export default function SettingPage() {
       try {
         setSettings(JSON.parse(stored))
       } catch {
-        //
+        // игнорируем ошибку
       }
     }
   }, [])
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_SETTING, JSON.stringify(settings))
-
-    console.log({ settings })
   }, [settings])
 
   const toggleAllowHalfOrders = () => {

@@ -1,29 +1,10 @@
 import { makeAutoObservable } from 'mobx'
 import { MenuResponse } from '@/app/api/menu/menu.types'
-
-// const transformResponse = (list: MenuResponse[]): MenuType[] => {
-//   return list.map((el) => {
-//     const { halfAvailable, name, price } = el
-//     const update: MenuType = {
-//       count: 0,
-//       halfAvailable,
-//       name,
-//       price,
-//     }
-//     return update
-//   })
-// }
-
-// Тип с добавленным count, без type
-export interface MenuType {
-  name: string
-  price: number
-  halfAvailable: boolean
-  count: number
-}
+import { MenuType } from '../components/ItemMenu/ItemMenu.types'
 
 export class MenuStore {
-  menu: MenuType[] = []
+  originalMenu: MenuResponse[] = []
+  order: MenuType[] = []
   loading = false
 
   constructor() {
@@ -31,7 +12,9 @@ export class MenuStore {
   }
 
   setMenu(data: MenuResponse[]) {
-    this.menu = data.map(({ name, price, halfAvailable }) => ({
+    this.originalMenu = data
+
+    this.order = data.map(({ name, price, halfAvailable }) => ({
       name,
       price,
       halfAvailable,
@@ -44,14 +27,14 @@ export class MenuStore {
   }
 
   increaseCount(name: string) {
-    const item = this.menu.find((el) => el.name === name)
+    const item = this.order.find((el) => el.name === name)
     if (item) {
       item.count++
     }
   }
 
   decreaseCount(name: string) {
-    const item = this.menu.find((el) => el.name === name)
+    const item = this.order.find((el) => el.name === name)
     if (item && item.count > 0) {
       item.count--
     }

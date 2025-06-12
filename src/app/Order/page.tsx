@@ -1,9 +1,31 @@
+'use client'
+
+import { menuStore } from '../store/menu-store'
+import { observer } from 'mobx-react-lite'
+import ItemMenu from '../components/ItemMenu/ItemMenu'
 import styles from './Order.module.scss'
 
-export default function OrderPage() {
+const OrderPage = observer(() => {
+  const orderWithCount = menuStore.order.filter((item) => item.count > 0)
+
   return (
-    <div className={styles.container}>
-      <h1>Имя страницы</h1>
-    </div>
+    <section className={styles.page}>
+      <div>
+        <h1>Заказ</h1>
+      </div>
+
+      <div>
+        {orderWithCount.map((item) => (
+          <ItemMenu
+            key={item.name}
+            item={item}
+            onIncrease={() => menuStore.increaseCount(item.name)}
+            onDecrease={() => menuStore.decreaseCount(item.name)}
+          />
+        ))}
+      </div>
+    </section>
   )
-}
+})
+
+export default OrderPage

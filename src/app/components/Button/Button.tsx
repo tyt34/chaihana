@@ -1,9 +1,18 @@
+import { ReactNode } from 'react'
 import styles from './Button.module.scss'
+import Link from 'next/link'
 
-export default function Button() {
+interface Props {
+  children?: ReactNode
+  href: string
+  name: string
+}
+
+export default function Button({ children, href, name }: Props) {
   return (
-    <section className={styles.container}>
-      <h1>Имя страницы button</h1>
-    </section>
+    <Link href={href} className={styles.container}>
+      {name}
+      {children}
+    </Link>
   )
 }
